@@ -21,16 +21,26 @@ class Passport:
         return None not in [self.byr, self.iyr, self.eyr, self.hgt, self.hcl, self.ecl, self.pid]
 
     def valid_byr(self):
-        return 1920 <= int(self.byr) <= 2002
+        if self.byr is None:
+            return False
+
+        return 1920 <= self.byr <= 2002
 
     def valid_iyr(self):
-        return 2010 <= int(self.iyr) <= 2020
+        if self.iyr is None:
+            return False
+
+        return 2010 <= self.iyr <= 2020
 
     def valid_eyr(self):
-        return 2020 <= int(self.eyr) <= 2030
+        if self.eyr is None:
+            return False
+
+        return 2020 <= self.eyr <= 2030
 
     def valid_hgt(self):
-        if self.hgt is None: return False
+        if self.hgt is None:
+            return False
 
         measurement_cm = self.hgt[-2:] == 'cm'
         measurement_inch = self.hgt[-2:] == 'in'
@@ -44,13 +54,22 @@ class Passport:
             return 59 <= int(self.hgt[:-2]) <= 76
 
     def valid_hcl(self):
-        return bool(re.match('^[#][0-9a-f]{6}', self.hcl))
+        if self.hcl is None:
+            return False
+
+        return bool(re.match('^[#][0-9a-f]{6}$', self.hcl))
 
     def valid_ecl(self):
+        if self.ecl is None:
+            return False
+
         return self.ecl in ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth']
 
     def valid_pid(self):
-        return bool(re.match('[0-9]{9}', self.pid))
+        if self.pid is None:
+            return False
+
+        return bool(re.match('[0-9]{9}$', self.pid))
 
     def valid_passport(self):
 
@@ -65,21 +84,28 @@ class Passport:
 
     @staticmethod
     def parse_to_passport(passport_dict):
+        byr = passport_dict.get('byr')
+        iyr = passport_dict.get('iyr')
+        eyr = passport_dict.get('eyr')
+        hgt = passport_dict.get('hgt')
+        hcl = passport_dict.get('hcl')
+        ecl = passport_dict.get('ecl')
+        pid = passport_dict.get('pid')
+        cid = passport_dict.get('cid')
 
         return Passport(
-            byr=passport_dict.get('byr', None),
-            iyr=passport_dict.get('iyr', None),
-            eyr=passport_dict.get('eyr', None),
-            hgt=passport_dict.get('hgt', None),
-            hcl=passport_dict.get('hcl', None),
-            ecl=passport_dict.get('ecl', None),
-            pid=passport_dict.get('pid', None),
-            cid=passport_dict.get('cid', None)
+            byr=int(byr) if byr is not None else byr,
+            iyr=int(iyr) if iyr is not None else iyr,
+            eyr=int(eyr) if eyr is not None else eyr,
+            hgt=hgt,
+            hcl=hcl,
+            ecl=ecl,
+            pid=pid,
+            cid=cid
         )
 
 
 def load_data(file_path):
-
     passports = []
     with open(file_path) as f:
 
