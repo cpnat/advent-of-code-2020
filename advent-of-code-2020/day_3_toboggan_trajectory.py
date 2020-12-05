@@ -29,11 +29,13 @@ def load_data(file_path):
         return [list(line.rstrip()) for line in f]
 
 
-data = load_data('advent-of-code-2020/data/day_3_input.txt')
+if __name__ == '__main__':
 
-toboggan_trajectory_answer = toboggan_trajectory(data, 3, 1)
-print('Answer toboggan trajectory (3, 1) -> {}'.format(toboggan_trajectory_answer))
+    data = load_data('advent-of-code-2020/data/day_3_input.txt')
 
-trajectories = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
-multiple_toboggan_trajectory_answer = check_multiple_trajectories(data, trajectories)
-print('Answer toboggan trajectories {} -> {}'.format(trajectories, multiple_toboggan_trajectory_answer))
+    toboggan_trajectory_answer = toboggan_trajectory(data, 3, 1)
+    print('Answer toboggan trajectory (3, 1) -> {}'.format(toboggan_trajectory_answer))
+
+    trajectories = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
+    multiple_toboggan_trajectory_answer = check_multiple_trajectories(data, trajectories)
+    print('Answer toboggan trajectories {} -> {}'.format(trajectories, multiple_toboggan_trajectory_answer))

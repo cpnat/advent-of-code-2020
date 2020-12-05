@@ -122,10 +122,12 @@ def load_data(file_path):
     return passports
 
 
-data = load_data('advent-of-code-2020/data/day_4_input.txt')
+if __name__ == '__main__':
 
-valid_fields = sum((passport.valid_fields() for passport in data))
-print('Answer valid fields -> {}'.format(valid_fields))
+    data = load_data('advent-of-code-2020/data/day_4_input.txt')
 
-valid_passports = sum((passport.valid_passport() for passport in data))
-print('Answer valid passports -> {}'.format(valid_passports))
+    valid_fields = sum((passport.valid_fields() for passport in data))
+    print('Answer valid fields -> {}'.format(valid_fields))
+
+    valid_passports = sum((passport.valid_passport() for passport in data))
+    print('Answer valid passports -> {}'.format(valid_passports))
