@@ -72,7 +72,6 @@ class Passport:
         return bool(re.match('[0-9]{9}$', self.pid))
 
     def valid_passport(self):
-
         return self.valid_fields() and \
                self.valid_byr() and \
                self.valid_iyr() and \
