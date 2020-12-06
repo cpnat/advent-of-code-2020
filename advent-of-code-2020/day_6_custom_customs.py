@@ -12,9 +12,9 @@ def anyone_yes(data):
 def everyone_yes(data):
 
     response_set = [set(letters) for letters in data]
-    response_intersection = reduce(set.intersection, response_set)
+    response_set_intersection = reduce(set.intersection, response_set)
 
-    return len(response_intersection)
+    return len(response_set_intersection)
 
 
 def load_data(file_path):
