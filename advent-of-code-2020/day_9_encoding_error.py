@@ -9,7 +9,7 @@ class XMAS:
             sequence_set, matching_pair = set(self.sequence[i - self.preamble: i]), False
 
             for j in range(i - self.preamble, i):
-                # each number should be unique, so divide the target by two to ensure that j isn't double counted
+                # each number should be unique, so divide i by two to ensure that j isn't double counted
                 if (self.sequence[i] - self.sequence[j] in sequence_set) and (self.sequence[i]/2 != self.sequence[j]):
                     matching_pair = True
                     break
