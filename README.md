@@ -1,2 +1,2 @@
 # advent-of-code-2020
-Solutions to https://adventofcode.com/2020 problems
+Python solutions to https://adventofcode.com/2020 problems
